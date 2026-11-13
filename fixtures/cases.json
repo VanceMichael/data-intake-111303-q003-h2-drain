@@ -1,0 +1,81 @@
+[
+  {
+    "name": "优雅排空后继续领取",
+    "routes": [],
+    "input": {
+      "transport": "h2",
+      "items": [
+        "plain",
+        "drain"
+      ]
+    },
+    "expected": {
+      "ids": [
+        "drain",
+        "plain"
+      ],
+      "complete": true
+    },
+    "required": [],
+    "kind": "h2",
+    "mode": "drain"
+  },
+  {
+    "name": "拒流可重取",
+    "routes": [],
+    "input": {
+      "transport": "h2",
+      "items": [
+        "refused"
+      ]
+    },
+    "expected": {
+      "ids": [
+        "refused"
+      ],
+      "complete": true
+    },
+    "required": [],
+    "kind": "h2",
+    "mode": "refused"
+  },
+  {
+    "name": "截断正文不得发布",
+    "routes": [],
+    "input": {
+      "transport": "h2",
+      "items": [
+        "broken"
+      ]
+    },
+    "expected": {
+      "ids": [],
+      "complete": false,
+      "unresolved": [
+        "broken"
+      ]
+    },
+    "required": [],
+    "kind": "h2",
+    "mode": "broken"
+  },
+  {
+    "name": "领取回复失联先查收据",
+    "routes": [],
+    "input": {
+      "transport": "h2",
+      "claims": [
+        "paid"
+      ]
+    },
+    "expected": {
+      "ids": [
+        "paid"
+      ],
+      "complete": true
+    },
+    "required": [],
+    "kind": "h2",
+    "mode": "claim"
+  }
+]
